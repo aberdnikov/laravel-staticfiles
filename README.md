@@ -100,3 +100,49 @@ return [
     </body>
 </html>
 ~~~ 
+
+## Как использовать готовые пакеты со статикой
+1) заходите на packagist.org и вписываете в поле поиска название нужного пакета, например jquery, bootstrap, jqueryui, angular, etc...
+Скорее всего этот пакет будет у вендора "components"
+2) вписываете пакет в composer.json
+~~~ 
+{
+    "require": {
+        "components/bootstrap": "*",
+        "components/jqueryui": "*",
+        "components/font-awesome": "*",
+        "components/animate.css": "*",
+        "components/jquery-pace": "*",
+        "components/jquery-notific8": "dev-master",
+        "components/jquery": "*"
+    }, 
+}
+~~~ 
+3) опубликуйте в app конфиг пакета "larakit/larastatic" чтобы его можно было перезаписывать
+~~~ 
+$php artisan config:publish larakit/larastatic
+~~~ 
+
+4) вписываете эти же пакеты, подключенные в composer в 
+~~~
+../app/config/packages/larakit/larastatic/larastatic.php
+~~~
+в секцию used
+~~~
+    'used'       => [
+        'components/jquery'          => null,
+        "components/bootstrap"       => null,
+        "components/jqueryui"        => null,
+        "components/font-awesome"    => null,
+        "components/animate.css"     => null,
+        "components/jquery-pace"     => null,
+        "components/jquery-notific8" => 'dist',
+    ]
+~~~
+где ключ - это название пакета, а значение - это путь к статике, которую надо будет вытащить в директорию доступную по HTTP (по умолчанию "public" или true)
+5) после того как это сделано можете вызвать в консоли процедуру
+ 
+## Возможности и рекомендации
+Пакет умеет собирать в один файл и минимизировать статику. Все билды версифицированы, что исключает кеширование на стороне клиента.
+Для режима разработки отключите сборку билдов, а на продакшн-сервере включите. 
+Этим вы значительно уменьшите количество выполняемых к серверу запросов для получения статики.
