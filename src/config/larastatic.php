@@ -57,16 +57,17 @@ return [
     ],
 	//для этих пакетов будет выполнена команда "asset:publish"
     //for these packages will execute the command "asset:publish"
+	//не забудьте прописать эти же пакеты в composer.json
     'used'       => [
         /*
         "package-name"=> "path to static (default: '')"
         */
-        'components/jquery'          => null,
-        "components/bootstrap"       => null,
-        "components/jqueryui"        => null,
-        "components/font-awesome"    => null,
-        "components/animate.css"     => null,
-        "components/jquery-pace"     => null,
+        'components/jquery'          => '',
+        "components/bootstrap"       => '',
+        "components/jqueryui"        => '',
+        "components/font-awesome"    => '',
+        "components/animate.css"     => '',
+        "components/jquery-pace"     => '',
         "components/jquery-notific8" => 'dist',
     ]
 ];

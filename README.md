@@ -137,10 +137,26 @@ $php artisan config:publish larakit/larastatic
         "components/animate.css"     => null,
         "components/jquery-pace"     => null,
         "components/jquery-notific8" => 'dist',
+        "{package}" 				 => '{path}',
     ]
 ~~~
 где ключ - это название пакета, а значение - это путь к статике, которую надо будет вытащить в директорию доступную по HTTP (по умолчанию "public" или true)
 5) после того как это сделано можете вызвать в консоли процедуру
+~~~
+php artisan larakit:static-deploy 
+~~~
+которая произведет выкладку статики в public 
+php artisan asset:publish {package} --path={path}
+для каждого пакета из 
+~~~
+Config::get('larakit::larastatic.used');
+~~~
+
+6) почистить выложенную статику можно запустив команду
+~~~
+php artisan larakit:static-flush
+~~~
+ 
  
 ## Возможности и рекомендации
 Пакет умеет собирать в один файл и минимизировать статику. Все билды версифицированы, что исключает кеширование на стороне клиента.
