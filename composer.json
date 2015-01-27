@@ -1,6 +1,6 @@
 {
     "name": "larakit/larastatic",
-    "description": "",
+    "description": "Библиотека для Laravel для управления статикой (сборка, сжатие JS/CSS) ",
     "authors": [
         {
             "name": "Alexey Berdnikov",
