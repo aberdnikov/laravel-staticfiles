@@ -34,12 +34,14 @@ class CommandDeploy extends \Illuminate\Console\Command {
      * @return mixed
      */
     public function fire() {
-        $used = \Config::get('staticfiles.used');
+        $used = \Config::get('larastatic::larastatic.used');
         foreach ($used as $lib => $path) {
             $arguments           = [
                 'package' => $lib,
             ];
-            $arguments['--path'] = 'vendor/' . $lib . '/' . ($path ? trim($path, '/') . '/' : '');
+            if(true!==$path){
+                $arguments['--path'] = 'vendor/' . $lib . '/' . ($path ? trim($path, '/') . '/' : '');
+            }
             \Artisan::call('asset:publish', $arguments, $this->output);
         }
         $this->info('Static files deployed!');

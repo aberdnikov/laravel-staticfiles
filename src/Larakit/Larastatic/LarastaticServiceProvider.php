@@ -23,7 +23,7 @@ class LarastaticServiceProvider extends ServiceProvider {
             'larakit:static-deploy',
             'larakit:static-flush',
         ]);
-        $this->package('larakit/larastatic', 'larakit');
+        $this->package('larakit/larastatic');
         if(class_exists('\Twig')){
             \Twig::addExtension(new \Larakit\Larastatic\Twig);
         }
